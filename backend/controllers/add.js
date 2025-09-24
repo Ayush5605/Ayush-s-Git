@@ -1,3 +1,3 @@
-export function add(){
+export async function add(){
     console.log("Add command !!");
 }

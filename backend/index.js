@@ -11,8 +11,21 @@ import {revert} from "./controllers/revert.js";
 
 yargs(hideBin(process.argv))
 .command("init","Initialise a new repository",{},initRepo)
-.command("add <file>","New changes added !",{},add)
+.command("add <file>","New changes added !",
+    (yargs)=>{
+        yargs.positional("File",{
+            describe:"File to add to staging",
+            type:"String",
+
+        })
+    }
+,add)
 .command("commit","New changes added !",{},commit)
 .command("push","Push initialised",{},push)
 .command("pull","Pull intialised",{},pull)
-.command("revert","Revert changes",{},revert).demandCommand(1,"Enter a command").help().argv
+.command("revert <commitID>","Revert changes",
+    (yargs)=>{
+        yargs.positional("<commitID>",{
+            describe:"<commitID> revert back to "
+        })
+    },revert).demandCommand(1,"Enter a command").help().argv
