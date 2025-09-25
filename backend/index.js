@@ -23,7 +23,12 @@ yargs(hideBin(process.argv))
     add(argv.File);
 
 })
-.command("commit","New changes added !",{},commit)
+.command("commit <message>","New changes added !",{},
+    (argv)=>{
+        commit(argv.message);
+
+    }
+    )
 .command("push","Push initialised",{},push)
 .command("pull","Pull intialised",{},pull)
 .command("revert <commitID>","Revert changes",
