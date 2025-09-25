@@ -4,7 +4,7 @@ import fs from "fs/promises";
  
  export async function initRepo(){
 
-    const repoPath=path.resolve(process.cwd(),".Ayush's Git");
+    const repoPath=path.resolve(process.cwd(),".Ayush_Git");
     const commitPath=path.join(repoPath,"commits");
 
 
