@@ -10,6 +10,7 @@ import {revert} from "./controllers/revert.js";
 
 
 yargs(hideBin(process.argv))
+.command("start","Start a new Server",{},startServer)
 .command("init","Initialise a new repository",{},initRepo)
 .command("add <File>","New changes added !",
     (yargs)=>{
@@ -36,4 +37,9 @@ yargs(hideBin(process.argv))
         yargs.positional("<commitID>",{
             describe:"<commitID> revert back to "
         })
-    },revert).demandCommand(1,"Enter a command").help().argv
+    },revert).demandCommand(1,"Enter a command").help().argv;
+
+
+    function startServer(){
+        console.log("Server logic called");
+    }
