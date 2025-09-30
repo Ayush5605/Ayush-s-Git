@@ -1,3 +1,12 @@
+import express from "express";
+import dotenv from 'dotenv';
+import cors from "cors";
+import mongoose from "mongoose";
+import bodyParser from "body-parser";
+import http from "http";
+
+
+
 import yargs from "yargs";
 
 import {hideBin} from "yargs/helpers";
@@ -7,6 +16,9 @@ import {commit} from "./controllers/commit.js";
 import {push} from"./controllers/push.js";
 import {pull} from "./controllers/pull.js";
 import {revert} from "./controllers/revert.js";
+
+
+dotenv.config();
 
 
 yargs(hideBin(process.argv))
@@ -41,5 +53,20 @@ yargs(hideBin(process.argv))
 
 
     function startServer(){
-        console.log("Server logic called");
+
+        const app=express();
+        const port=process.env.PORT || 3000;
+
+        app.use(bodyParser.json());
+        app.use(express.json());
+
+        const mongoURI=process.env.MONGODB_URI;
+
+        mongoose.connect(mongoURI)
+        .then(()=>{
+            console.log("Connected to Database");
+        }).catch((err)=>{
+            console.log(err.message);
+        });
+
     }
