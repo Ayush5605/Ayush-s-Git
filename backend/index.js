@@ -4,6 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import http from "http";
+import {Server} from "socket.io";
 
 
 
@@ -68,5 +69,44 @@ yargs(hideBin(process.argv))
         }).catch((err)=>{
             console.log(err.message);
         });
+
+        app.use(cors({origin:"*"}));
+
+        app.get("/",(req,res)=>{
+            res.send("welcome");
+        })
+
+        const httpServer=http.createServer(app);
+        const io=new Server(http,{
+
+            cors:{
+                origin:"*",
+                methods:["GET","POST"]
+            }
+
+        });
+
+        let user="test";
+
+        io.on("connection",(socket)=>{
+            socket.on("joinRoom",(userID)=>{
+               user=userID;
+               console.log("======");
+               console.log(user);
+               console.log("======") 
+            });
+            
+        })
+
+        const db=mongoose.connection;
+
+        db.once("open",async()=>{
+            console.log("CRUD operations called !!");
+        });
+
+
+        httpServer.listen(port,()=>{
+            console.log(`Server is running on ${port}`);
+        })
 
     }
