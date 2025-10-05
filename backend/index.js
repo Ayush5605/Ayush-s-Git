@@ -17,6 +17,7 @@ import {commit} from "./controllers/commit.js";
 import {push} from"./controllers/push.js";
 import {pull} from "./controllers/pull.js";
 import {revert} from "./controllers/revert.js";
+import mainRouter from "./Routes/mainRoute.js";
 
 
 dotenv.config();
@@ -72,12 +73,12 @@ yargs(hideBin(process.argv))
 
         app.use(cors({origin:"*"}));
 
-        app.get("/",(req,res)=>{
-            res.send("welcome");
-        })
+        app.use("/",mainRouter);
+
+       
 
         const httpServer=http.createServer(app);
-        const io=new Server(http,{
+        const io=new Server(httpServer,{
 
             cors:{
                 origin:"*",
