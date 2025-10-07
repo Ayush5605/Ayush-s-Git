@@ -69,8 +69,36 @@ export const getAllUsers=(req,res)=>{
     }
 };
 
-export const login=(req,res)=>{
-    res.send("login");
+export async function login(req,res){
+
+    const {email,password}=req.body;
+
+    try{
+
+        await connectClient();
+        const db=client.db("GITCluster");
+        const userCollecton=db.collection("users");
+
+        const user=await userCollecton.findOne({email});
+
+        if(!user){
+            return res.json({success:false,message:"Invalid credentials"});
+        }
+
+        const isMatch=await bcrypt.compare(password,user.password);
+
+        if(!isMatch){
+             return res.json({success:false,message:"Invalid credentials"});
+        }
+
+        const token=jwt.sign({id:user._id},process.env.JWT_SECRET_KEY,{expiresIn:"1h"});
+        res.json({success:true,message:token});
+
+
+    }catch(err){
+        return res.json({success:false,message:err.message});
+
+    }
 
 }
 
