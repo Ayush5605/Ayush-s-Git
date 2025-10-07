@@ -2,6 +2,8 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
+import {ObjectId} from "mongodb";
+
 
 dotenv.config();
 const uri=process.env.MONGODB_URI;
@@ -20,8 +22,23 @@ async function connectClient(){
 }
 
 
-export const getAllUsers=(req,res)=>{
-    res.send("get all users");
+export async function getAllUsers(req,res){
+
+    try{
+
+        connectClient();
+        const db=client.db("Ayush_GIT");
+        const userCollecton=db.collection("users");
+
+        const user=await userCollecton.find({}).toArray();
+        return res.json(user);
+
+    }catch(err){
+        return res.json({
+            success:false,
+            message:"Error in fetching user details!!"
+        })
+    }
 
 };
 
@@ -33,7 +50,7 @@ export const getAllUsers=(req,res)=>{
 
     try{
         await connectClient();
-        const db=client.db("GITCluster");
+        const db=client.db("Ayush_GIT");
         const userCollecton=db.collection("users");
 
         const Existinguser=await userCollecton.findOne({username});
@@ -76,7 +93,7 @@ export async function login(req,res){
     try{
 
         await connectClient();
-        const db=client.db("GITCluster");
+        const db=client.db("Ayush_GIT");
         const userCollecton=db.collection("users");
 
         const user=await userCollecton.findOne({email});
@@ -102,8 +119,19 @@ export async function login(req,res){
 
 }
 
-export const getUserProfile=(req,res)=>{
-    res.send("get user profile");
+export async function getUserProfile(req,res){
+
+    try{
+
+        await connectClient();
+        const db=client.db("Ayush_GIT");
+        const userCollecton=db.collection("users");
+
+    }catch(err){
+
+        return res.json({success:false,message:"Error during fetching user details"});
+
+    }
 
 };
 
