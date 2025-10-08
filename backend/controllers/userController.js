@@ -121,11 +121,25 @@ export async function login(req,res){
 
 export async function getUserProfile(req,res){
 
+    const currID=req.params.id;
+
     try{
 
         await connectClient();
         const db=client.db("Ayush_GIT");
         const userCollecton=db.collection("users");
+
+        const user=await userCollecton.findOne({
+            _id:new ObjectId(currID)
+        });
+
+
+        if(!user){
+            return res.status(400).json({message:"User not found !"});
+        }
+
+        return res.json(user,{message:"Profile fetched !"});
+
 
     }catch(err){
 

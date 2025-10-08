@@ -7,7 +7,7 @@ userRouter.get("/allUsers",getAllUsers);
 userRouter.post("/login",login);
 userRouter.post("/signup",signup);
 userRouter.get("/updateUser",updateUserProfile);
-userRouter.get("/showUserProfile",getUserProfile);
+userRouter.get("/getUserProfile/:id",getUserProfile);
 userRouter.get("/deleteUserProfile",deleteUser);
 
 
