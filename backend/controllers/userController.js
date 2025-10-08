@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import { MongoClient } from "mongodb";
+import { MongoClient, ReturnDocument } from "mongodb";
 import dotenv from "dotenv";
 import {ObjectId} from "mongodb";
 
@@ -26,11 +26,11 @@ export async function getAllUsers(req,res){
 
     try{
 
-        connectClient();
+        await connectClient();
         const db=client.db("Ayush_GIT");
-        const userCollecton=db.collection("users");
+        const userCollection=db.collection("users");
 
-        const user=await userCollecton.find({}).toArray();
+        const user=await userCollection.find({}).toArray();
         return res.json(user);
 
     }catch(err){
@@ -51,9 +51,9 @@ export async function getAllUsers(req,res){
     try{
         await connectClient();
         const db=client.db("Ayush_GIT");
-        const userCollecton=db.collection("users");
+        const userCollection=db.collection("users");
 
-        const Existinguser=await userCollecton.findOne({username});
+        const Existinguser=await userCollection.findOne({username});
 
         if(Existinguser){
             return res.status(400).json({message:"User already exists"});
@@ -94,9 +94,9 @@ export async function login(req,res){
 
         await connectClient();
         const db=client.db("Ayush_GIT");
-        const userCollecton=db.collection("users");
+        const userCollection=db.collection("users");
 
-        const user=await userCollecton.findOne({email});
+        const user=await userCollection.findOne({email});
 
         if(!user){
             return res.json({success:false,message:"Invalid credentials"});
@@ -127,9 +127,9 @@ export async function getUserProfile(req,res){
 
         await connectClient();
         const db=client.db("Ayush_GIT");
-        const userCollecton=db.collection("users");
+        const userCollection=db.collection("users");
 
-        const user=await userCollecton.findOne({
+        const user=await userCollection.findOne({
             _id:new ObjectId(currID)
         });
 
@@ -149,10 +149,75 @@ export async function getUserProfile(req,res){
 
 };
 
-export const updateUserProfile=(req,res)=>{
-    console.log("update user");
+export async function updateUserProfile(req,res){
+
+    const currID=req.params.id;
+    const {email,password}=req.body;
+
+
+    try{
+
+
+         await connectClient();
+         const db=client.db("Ayush_GIT");
+         const userCollection=db.collection("users");
+
+         let updateFields={email};
+
+         if(password){
+            const salt=await bcrypt.genSalt(10);
+            const hashedPassword=await bcrypt.hash(password,salt);
+            updateFields.password=hashedPassword;
+         }
+
+         const result=await userCollection.findOneAndUpdate({
+            _id:new ObjectId(currID)
+         },
+        {$set:updateFields},
+    {returnDocument:"after"});
+
+
+
+    if(!result.value){
+        return res.json({success:false,message:"User not found !!"});
+    }
+
+        return res.json({success:true,message:"user profile updated successfully"});
+
+
+
+
+
+    }catch(err){
+        return res.json({success:false,message:"Cannot update user profile !"});
+    }
 };
 
-export const deleteUser=(req,res)=>{
-    console.log("Delete user");
+export async function deleteUser(req,res){
+
+    const currID=req.params.id;
+
+
+    try{
+
+         await connectClient();
+         const db=client.db("Ayush_GIT");
+         const userCollection=db.collection("users");
+
+         const result=await userCollection.deleteOne({
+            _id: new ObjectId(currID)
+         });
+
+
+         if(result.deletedCount==0){
+            return res.json({success:false,message:"User not found !"});
+         }
+
+         return res.json({success:true,message:"User profile deleted!!"});
+
+
+
+    }catch(err){
+        return res.json({success:false,message:err.message});
+    }
 }

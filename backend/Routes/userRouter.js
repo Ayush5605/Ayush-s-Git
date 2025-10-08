@@ -6,9 +6,9 @@ const userRouter=express.Router();
 userRouter.get("/allUsers",getAllUsers);
 userRouter.post("/login",login);
 userRouter.post("/signup",signup);
-userRouter.get("/updateUser",updateUserProfile);
+userRouter.put("/updateProfile/:id",updateUserProfile);
 userRouter.get("/getUserProfile/:id",getUserProfile);
-userRouter.get("/deleteUserProfile",deleteUser);
+userRouter.delete("/deleteProfile/:id",deleteUser);
 
 
 export {userRouter};
