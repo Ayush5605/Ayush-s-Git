@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { boolean } from "yargs";
 
 const {Schema}=mongoose;
 

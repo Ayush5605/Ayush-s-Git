@@ -1,31 +1,74 @@
-export const createRepository=()=>{
-    res.send("Repository created !");
+import mongoose from "mongoose";
+import user from "../Models/userModel.js";
+import Issue from "../Models/issueModel.js";
+import { MongoGridFSChunkError } from "mongodb";
+import Repository from "../Models/repoModel.js";
+
+
+export async function createRepository(){
+
+    const{owner,name,issue,content,description,visibility}=
+    req.body;
+
+    try{
+
+        if(!name){
+            res.status(400).json({error:"Repository name is required!"})
+        }
+
+        if(!mongoose.Types.ObjectId.isValid(owner)){
+            res.status(400).json({error:"Invalid user name"})
+        }
+
+        const newRepository=new Repository({
+            name,
+            description,
+            content,
+            owner,
+            visibility,
+            issue
+
+
+        });
+
+        const result=await newRepository.save();
+
+        res.status(201).json({
+            message:"Repository created !!",
+            repositoryID:result._id,
+        });
+
+    }catch(err){
+        console.error("Error during repository creation :",err.message);
+        res.status(500).send("Server error");
+
+    }
 };
 
-export const getAllRepositories=()=>{
+export async function getAllRepositories(){
     res.send("Fetching repositories");
 };
 
-export const fetchRepositoryById=()=>{
+export async function fetchRepositoryById(){
     res.send("fetching repo by ID")
 };
 
-export const fetchRepositoryByName=()=>{
+export async function fetchRepositoryByName(){
     res.send("fetching repo by name");
 };
 
-export const fetchRepositoriesForCurrentUser=()=>{
+export async function fetchRepositoriesForCurrentUser(){
     res.send("fetching repo for current user");
 };
 
-export const updateRepositoryById=()=>{
+export async function updateRepositoryById(){
     res.send("updating repo");
 };
 
-export const togglevisibilityById=()=>{
+export async function  togglevisibilityById(){
     res.send("toggle visibility");
 };
 
-export const deleteRepositoryById=()=>{
+export async function  deleteRepositoryById(){
     res.send("deleting repo");
 };
