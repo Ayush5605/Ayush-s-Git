@@ -27,7 +27,7 @@ export async function getAllUsers(req,res){
     try{
 
         await connectClient();
-        const db=client.db("Ayush_GIT");
+        const db=client.db("test");
         const userCollection=db.collection("users");
 
         const user=await userCollection.find({}).toArray();
@@ -50,7 +50,7 @@ export async function getAllUsers(req,res){
 
     try{
         await connectClient();
-        const db=client.db("Ayush_GIT");
+        const db=client.db("test");
         const userCollection=db.collection("users");
 
         const Existinguser=await userCollection.findOne({username});
@@ -93,7 +93,7 @@ export async function login(req,res){
     try{
 
         await connectClient();
-        const db=client.db("Ayush_GIT");
+        const db=client.db("test");
         const userCollection=db.collection("users");
 
         const user=await userCollection.findOne({email});
@@ -126,7 +126,7 @@ export async function getUserProfile(req,res){
     try{
 
         await connectClient();
-        const db=client.db("Ayush_GIT");
+        const db=client.db("test");
         const userCollection=db.collection("users");
 
         const user=await userCollection.findOne({
@@ -159,7 +159,7 @@ export async function updateUserProfile(req,res){
 
 
          await connectClient();
-         const db=client.db("Ayush_GIT");
+         const db=client.db("test");
          const userCollection=db.collection("users");
 
          let updateFields={email};
@@ -201,7 +201,7 @@ export async function deleteUser(req,res){
     try{
 
          await connectClient();
-         const db=client.db("Ayush_GIT");
+         const db=client.db("test");
          const userCollection=db.collection("users");
 
          const result=await userCollection.deleteOne({

@@ -45,8 +45,19 @@ export async function createRepository(req,res){
     }
 };
 
-export async function getAllRepositories(){
-    res.send("Fetching repositories");
+export async function getAllRepositories(req,res){
+
+
+    try{
+
+        const repositories=await Repository.find({}).populate("owner").populate("issue");
+
+        return res.json(repositories);
+
+    }catch(err){
+        console.error("Error during fetching repositories:", err.message);
+        res.status(500).send("Server error");
+    }
 };
 
 export async function fetchRepositoryById(){
