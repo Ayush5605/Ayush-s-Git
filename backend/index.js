@@ -19,6 +19,9 @@ import {push} from"./controllers/push.js";
 import {pull} from "./controllers/pull.js";
 import {revert} from "./controllers/revert.js";
 import mainRouter from "./Routes/mainRoute.js";
+import Repository from "./Models/repoModel.js";
+import Issue from "./Models/issueModel.js";
+import user from "./Models/userModel.js";
 
 
 dotenv.config();

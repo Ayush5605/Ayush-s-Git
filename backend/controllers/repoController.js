@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
-import user from "../Models/userModel.js";
-import Issue from "../Models/issueModel.js";
-import { MongoGridFSChunkError } from "mongodb";
 import Repository from "../Models/repoModel.js";
+import Issue from "../Models/issueModel.js";
+import user from "../Models/userModel.js";
+import { MongoGridFSChunkError } from "mongodb";
 
 
-export async function createRepository(){
+export async function createRepository(req,res){
 
     const{owner,name,issue,content,description,visibility}=
     req.body;

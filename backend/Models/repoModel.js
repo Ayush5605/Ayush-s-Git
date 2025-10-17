@@ -18,14 +18,14 @@ const RepositorySchema=new Schema({
 ],
 visibility:{
 
-    type:boolean
+    type:Boolean
 
 },
 
    owner:{
     type:Schema.Types.ObjectId,
     ref:"User",
-    require:true,
+    required:true,
 
    },
 
@@ -36,5 +36,4 @@ visibility:{
 });
 
 const Repository=mongoose.model("Repository",RepositorySchema);
-
 export default Repository;

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Repository from "./repoModel";
+import Repository from "./repoModel.js";
 
 const {Schema}=mongoose;
 
@@ -27,6 +27,6 @@ const IssueSchema=new Schema({
     }
 });
 
-const Issue=mongoose.model("Issue","IssueSchema");
-
+const Issue=mongoose.model("Issue",IssueSchema);
 export default Issue;
+

@@ -49,5 +49,5 @@ const UserSchema=new Schema({
 });
 
 const user=mongoose.model("User",UserSchema);
-
 export default user;
+
