@@ -96,12 +96,50 @@ export async function fetchRepositoryByName(req,res){
     }
 };
 
-export async function fetchRepositoriesForCurrentUser(){
-    res.send("fetching repo for current user");
+export async function fetchRepositoriesForCurrentUser(req,res){
+
+    const {userId}=req.params;
+
+    try{
+
+        const repositories=await Repository.find({owner:userId});
+
+        if(!repositories){
+            return res.status(404).json({message:"No repository found for this user!"});
+        }
+
+        return res.json({success:true,repositories});
+
+    }catch(err){
+        console.log(err.message);
+        return res.status(500).json({success:false,message:err.message});
+    }
 };
 
 export async function updateRepositoryById(){
-    res.send("updating repo");
+    const {id}=req.params;
+
+    const{content,description}=req.body;
+
+    try{
+
+        const repository=await Repository.find({_id:id});
+
+        repository.content.push(content);
+        repository.description=description;
+
+        const updatedRepository=await repository.save();
+
+        return res.json({success:true,
+            message:"repository updated successfully",
+            repository:updatedRepository});
+
+
+    }catch(err){
+        console.log(err.message);
+        return res.status(500).json({success:false,message:err.message});
+
+    }
 };
 
 export async function  togglevisibilityById(){
