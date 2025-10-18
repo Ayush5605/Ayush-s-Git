@@ -165,6 +165,23 @@ export async function  togglevisibilityById(req,res){
     }
 };
 
-export async function  deleteRepositoryById(){
-    res.send("deleting repo");
+export async function  deleteRepositoryById(req,res){
+
+    const{id}=req.params;
+
+    try{
+
+        const repository=await Repository.findByIdAndDelete(id);
+
+        if(!repository){
+            return res.json({success:false,message:"repository not found!"});
+        }
+
+        return res.json({success:true,message:"Repo deleted successfully !"});
+
+    }catch(err){
+         console.log(err.message);
+        return res.status(500).json({success:false,message:err.message});
+
+    }
 };
