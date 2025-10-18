@@ -60,12 +60,40 @@ export async function getAllRepositories(req,res){
     }
 };
 
-export async function fetchRepositoryById(){
-    res.send("fetching repo by ID")
+export async function fetchRepositoryById(req,res){
+
+    const {id}=req.params;
+
+    try{
+
+        const repository=await Repository.find({_id:id})
+        .populate("owner")
+        .populate("issue");
+
+        if(!repository){
+            return res.json({message:"repo not found"});
+        }
+        return res.json(repository);
+
+    }catch(err){
+        console.log('server error!');
+        return res.status(500).json({success:false,message:err.message});
+    }
 };
 
-export async function fetchRepositoryByName(){
-    res.send("fetching repo by name");
+export async function fetchRepositoryByName(req,res){
+
+    const {name}=req.params;
+
+    try{
+
+        const repository=await Repository.find({name:name});
+        return res.json(repository);
+
+    }catch(err){
+        console.log("Server error!");
+        return res.status(500).json({success:false,message:err.message});
+    }
 };
 
 export async function fetchRepositoriesForCurrentUser(){
