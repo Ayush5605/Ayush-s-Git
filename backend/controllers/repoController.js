@@ -142,8 +142,27 @@ export async function updateRepositoryById(){
     }
 };
 
-export async function  togglevisibilityById(){
-    res.send("toggle visibility");
+export async function  togglevisibilityById(req,res){
+
+    const {id}=req.params;
+
+    try{
+
+        const repository=await Repository.find({_id:id});
+
+        repository.visibility=!repository.visibility;
+
+        return res.json({success:true,
+            message:"repository  visibility toggled successfully",
+            repository});
+
+
+
+    }catch(err){
+        console.log(err.message);
+        return res.status(500).json({success:false,message:err.message});
+
+    }
 };
 
 export async function  deleteRepositoryById(){
