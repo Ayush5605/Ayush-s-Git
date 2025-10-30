@@ -3,4 +3,25 @@ import React, {createContext,useState,useEffect,useContext} from
 
 
  const AuthContext=createContext();
- export default AuthContext;
+
+
+ export const useAuth=()=>{
+    return useContext(AuthContext);
+ }
+ export const AuthProvider=({children})=>{
+    cont[currentUser,setCurrentUser]=useState(null);
+
+    useEffect(()=>{
+        const userId=localStorage.getItem('userId');
+        if(userId){
+            setCurrentUser(userId);
+        }
+    },[]);
+
+    const value={
+        currentUser,setCurrentUser
+    }
+
+
+    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+ };
