@@ -3,10 +3,11 @@ import React,{useEffect} from "react";
 import {useNavigate,useRoutes} from 'react-router-dom';
 
 import Login from "./components/auth/Login";
+import Signup from "./components/auth/Signup"
 
 import { useAuth } from "./components/authContext";
 
-const porjectRoutes=()=>{
+const projectRoutes=()=>{
     const {currentUser,setCurrentUser}=useAuth();
     const navigate=useNavigate();
 
@@ -16,7 +17,7 @@ const porjectRoutes=()=>{
         const userIdFromStorage=localStorage.getItem("userId");
 
         if(userIdFromStorage && !currentUser){
-            setCurrentUser=userIdFromStorage;
+            setCurrentUser(userIdFromStorage);
         }
 
         if(!userIdFromStorage && !["/auth","/signup"].includes(window.location.pathname)){
@@ -36,11 +37,8 @@ const porjectRoutes=()=>{
         {
             path:"/signup",
             element:<Signup/>
-        },
-        {
-            path:"/profile",
-            element:<Profile/>
         }
+       
     ]);
     return element;
 
@@ -49,4 +47,4 @@ const porjectRoutes=()=>{
 
 }
 
-export default porjectRoutes;
+export default projectRoutes;

@@ -9,7 +9,7 @@ import React, {createContext,useState,useEffect,useContext} from
     return useContext(AuthContext);
  }
  export const AuthProvider=({children})=>{
-    cont[currentUser,setCurrentUser]=useState(null);
+    const[currentUser,setCurrentUser]=useState(null);
 
     useEffect(()=>{
         const userId=localStorage.getItem('userId');
