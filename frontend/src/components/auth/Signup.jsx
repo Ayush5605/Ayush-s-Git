@@ -51,8 +51,9 @@ const navigate=useNavigate();
 
 
     return(
-        <div className="login-wapper">
-            <div className="login-logo-wrapper">
+        <div className="login-wrapper">
+            <div className="auth-content">
+            <div className="login-logo-container">
                 <img className="logo-login" src={logo} alt="Logo"/>
             </div>
 
@@ -127,6 +128,7 @@ const navigate=useNavigate();
                 </div>
 
 
+            </div>
             </div>
         </div>
 
