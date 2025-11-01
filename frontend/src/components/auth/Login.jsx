@@ -32,7 +32,7 @@ const Login=()=>{
 
         try{
             setLoading(true);
-            const res=await axios.post("http://localhost:3000/auth",{
+            const res=await axios.post("http://localhost:3000/login",{
                 email:email,
                 password:password
             })
@@ -116,6 +116,10 @@ const Login=()=>{
                                  {/* <div className="pass-box">
                                
                                   </div> */}
+
+                                   <p>
+                                                            New to Ayush's Git? <Link to="/signup">Signup</Link>
+                                                          </p>
         
         
                         </div>

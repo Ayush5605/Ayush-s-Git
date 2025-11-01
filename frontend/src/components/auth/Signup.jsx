@@ -120,7 +120,7 @@ const navigate=useNavigate();
 
                          <div className="pass-box">
                         <p>
-                          Already have an account? <Link to="/auth">Login</Link>
+                          Already have an account? <Link to="/login">Login</Link>
                         </p>
                           </div>
 

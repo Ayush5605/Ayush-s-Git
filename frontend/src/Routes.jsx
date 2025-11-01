@@ -6,6 +6,7 @@ import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup"
 
 import { useAuth } from "./components/authContext";
+import Dashboard from "./components/dashboard/Dashboard";
 
 const projectRoutes=()=>{
     const {currentUser,setCurrentUser}=useAuth();
@@ -20,23 +21,27 @@ const projectRoutes=()=>{
             setCurrentUser(userIdFromStorage);
         }
 
-        if(!userIdFromStorage && !["/auth","/signup"].includes(window.location.pathname)){
-            navigate("/auth");
+        if(!userIdFromStorage && !["/login","/signup"].includes(window.location.pathname)){
+            navigate("/login");
         }
 
-        if(userIdFromStorage && window.location.pathname=="/auth"){
+        if(userIdFromStorage && window.location.pathname=="/login"){
             navigate("/");
         }
     },[currentUser,navigate,setCurrentUser]);
 
     let element=useRoutes([
         {
-            path:"/auth",
+            path:"/login",
             element:<Login/>
         },
         {
             path:"/signup",
             element:<Signup/>
+        },
+        {
+            path:"/",
+            element:<Dashboard/>
         }
        
     ]);

@@ -75,7 +75,7 @@ export async function getAllUsers(req,res){
             const result=await userCollection.insertOne(newUser);
 
             const token=jwt.sign({id:result.insertedId},process.env.JWT_SECRET_KEY,{expiresIn:"1h"});
-           return res.json(token);
+           return res.json({token,userId:result.insertedId});
 
         
 
