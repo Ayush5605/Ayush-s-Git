@@ -3,7 +3,7 @@ import React,{useState,useEffect} from "react";
 const Dashboard=()=>{
 
     const [repositiories,setRepositiories]=useState([]);
-    const [searchQuery,setSearchQuery]=useState();
+    const [searchQuery,setSearchQuery]=useState('');
     const[suggestedRepositiories,setSuggestedRepositiories]=useState([]);
     const[searchResult,setSearchResult]=useState([]);
 
@@ -17,7 +17,8 @@ const Dashboard=()=>{
                     const response=await fetch(`http://localhost:3000/repo/user/${userId}`);
 
                     const data=await response.json();
-                    setRepositiories(data.repositiories || []);
+                    // API returns an array of repositories
+                    setRepositiories(Array.isArray(data) ? data : (data.repositories || []));
             }catch(err){
                 console.log(err);
             }
@@ -48,17 +49,15 @@ const Dashboard=()=>{
 
 
     useEffect(()=>{
-
-        if(searchQuery==''){
+        const normalizedQuery=(searchQuery || '').toLowerCase();
+        if(!normalizedQuery){
             setSearchResult(repositiories);
         }else{
             const filteredRepo=repositiories.filter((repo)=>
-                repo.name.toLowerCase().includes(searchQuery.toLowerCase())
-
+                (repo.name || '').toLowerCase().includes(normalizedQuery)
             );
             setSearchResult(filteredRepo);
         }
-        
     },[searchQuery,repositiories]);
     return(
     <section>
@@ -73,7 +72,7 @@ const Dashboard=()=>{
         </aside>
         <main>
              <h4>Your Repositiories</h4>
-            {repositiories.map((repo)=>{
+            {searchResult.map((repo)=>{
                 return <div key={repo._id}>
                     <h4>{repo.name}</h4>
                     <h4>{repo.description}</h4>

@@ -109,7 +109,8 @@ export async function login(req,res){
         }
 
         const token=jwt.sign({id:user._id},process.env.JWT_SECRET_KEY,{expiresIn:"1h"});
-        res.json({success:true,message:token});
+        // Align response shape with signup for frontend consistency
+        res.json({ token, userId: user._id });
 
 
     }catch(err){
