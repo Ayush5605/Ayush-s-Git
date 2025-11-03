@@ -24,14 +24,21 @@ export async function createRepository(req,res){
             name,
             description,
             content,
-            owner,
+            owner: new mongoose.Types.ObjectId(owner),
             visibility,
             issue
 
 
         });
+      
+
+        
 
         const result=await newRepository.save();
+
+          await user.findByIdAndUpdate(owner, {
+        $push: { repository: newRepository._id },
+});
 
         res.status(201).json({
             message:"Repository created !!",
@@ -101,14 +108,17 @@ export async function fetchRepositoriesForCurrentUser(req,res){
     const {userId}=req.params;
 
     try{
+        const objectId = new mongoose.Types.ObjectId(userId);
 
-        const repositories=await Repository.find({owner:userId});
+        const repositories=await Repository.find({owner:objectId})
+         .populate("owner", "username email") 
+      .populate("issue");;
 
-        if(!repositories){
+        if(!repositories || repositories.length===0){
             return res.status(404).json({message:"No repository found for this user!"});
         }
 
-        return res.json({success:true,repositories});
+        return res.json(repositories);
 
     }catch(err){
         console.log(err.message);

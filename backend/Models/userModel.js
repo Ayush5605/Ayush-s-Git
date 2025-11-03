@@ -33,7 +33,7 @@ const UserSchema=new Schema({
         {
             default:[],
             type:Schema.Types.ObjectId,
-            ref:"Users",
+            ref:"User",
         }
     ],
 
