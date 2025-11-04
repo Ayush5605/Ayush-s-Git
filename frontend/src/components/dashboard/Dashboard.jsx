@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from "react";
 import "./dashboard.css";
+import Navbar from "../Navbar";
 
 const Dashboard=()=>{
 
@@ -61,6 +62,7 @@ const Dashboard=()=>{
         }
     },[searchQuery,repositiories]);
     return(
+        <><Navbar/>
     <section id="dashboard">
         <aside>
             <h4>Suggested Repositiories</h4>
@@ -102,6 +104,7 @@ const Dashboard=()=>{
             </ul>
         </aside>
     </section>
+    </>
     )
 }
 
