@@ -1,33 +1,113 @@
-nav{
-    display:flex;
-    justify-content: space-between;
-}
-
-nav img{
-    width:30%;
-    margin-top: 10px;
-    height: 5%;
-    
-    border-radius: 100%;
-}
-nav div{
+nav {
     display: flex;
-}
-nav p{
-    margin-left: 30px;
-    padding-right: 50px;
-    margin-top:20px;
-    color:white;
-    opacity: 0.7;
-}
-nav h3{
-    margin-left: 10px;
-    color: white;
-    opacity: 0.7;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid rgba(100, 108, 255, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
 }
 
-nav h3:hover,
-nav p:hover{
-    text-decoration: underline;
+nav > a:first-child {
+    text-decoration: none;
+}
+
+nav > a:first-child > div {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+nav > a:first-child > div:hover {
+    transform: scale(1.05);
     opacity: 1;
+}
+
+nav img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid rgba(100, 108, 255, 0.5);
+    padding: 4px;
+    transition: all 0.3s ease;
+    background: rgba(100, 108, 255, 0.1);
+}
+
+nav img:hover {
+    border-color: #646cff;
+    box-shadow: 0 0 15px rgba(100, 108, 255, 0.5);
+    transform: rotate(5deg);
+}
+
+nav h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 600;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 10px rgba(100, 108, 255, 0.3);
+}
+
+nav > a:first-child > div:hover h3 {
+    opacity: 1;
+    color: #646cff;
+}
+
+nav > div:last-child {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+nav > div:last-child a {
+    text-decoration: none;
+}
+
+nav > div:last-child p {
+    margin: 0;
+    padding: 0.75rem 1.5rem;
+    color: #ffffff;
+    background: rgba(100, 108, 255, 0.1);
+    border: 2px solid rgba(100, 108, 255, 0.3);
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+nav > div:last-child p::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(100, 108, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+nav > div:last-child p:hover::before {
+    left: 100%;
+}
+
+nav > div:last-child p:hover {
+    background: rgba(100, 108, 255, 0.2);
+    border-color: #646cff;
+    color: #646cff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(100, 108, 255, 0.4);
+}
+
+nav > div:last-child p:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(100, 108, 255, 0.3);
 }

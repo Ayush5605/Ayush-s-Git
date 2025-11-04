@@ -1,9 +1,439 @@
-#dashboard{
-    border-top: 2px solid white;
-    margin-top: 5px;
-    display:flex;
-    width:100vw;
+#dashboard {
+    display: flex;
+    width: 100vw;
+    min-height: calc(100vh - 80px);
     justify-content: space-between;
-    margin-left: 5px;
-   padding-right: 20px;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    background-attachment: fixed;
+}
+
+#left {
+    flex: 1;
+    max-width: 300px;
+    padding: 1.5rem;
+    background: rgba(26, 26, 46, 0.6);
+    border-radius: 16px;
+    border: 2px solid rgba(100, 108, 255, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+#left h4:first-child {
+    margin: 0 0 1.5rem 0;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(100, 108, 255, 0.2), rgba(100, 108, 255, 0.1));
+    border: 2px solid rgba(100, 108, 255, 0.3);
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(100, 108, 255, 0.2);
+}
+
+#left > div {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(100, 108, 255, 0.2);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+#left > div:hover {
+    background: rgba(100, 108, 255, 0.15);
+    border-color: #646cff;
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(100, 108, 255, 0.3);
+}
+
+#left > div h4 {
+    margin: 0.5rem 0;
+    color: #ffffff;
+    font-size: 1rem;
+    border: none;
+    transition: color 0.3s ease;
+}
+
+#left > div:hover h4:first-of-type {
+    color: #646cff;
+}
+
+#left > div h4:last-child {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+#left .refresh-btn {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, rgba(100, 108, 255, 0.2), rgba(100, 108, 255, 0.1));
+    border: 2px solid rgba(100, 108, 255, 0.4);
+    border-radius: 10px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#left .refresh-btn:hover {
+    background: linear-gradient(135deg, rgba(100, 108, 255, 0.3), rgba(100, 108, 255, 0.2));
+    border-color: #646cff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(100, 108, 255, 0.4);
+}
+
+#left .refresh-btn:active {
+    transform: translateY(0);
+}
+
+#left .follow-btn {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(100, 108, 255, 0.15);
+    border: 1px solid rgba(100, 108, 255, 0.4);
+    border-radius: 8px;
+    color: #646cff;
+    font-weight: 500;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+#left .follow-btn:hover {
+    background: rgba(100, 108, 255, 0.25);
+    border-color: #646cff;
+    color: #ffffff;
+    transform: scale(1.05);
+    box-shadow: 0 2px 10px rgba(100, 108, 255, 0.3);
+}
+
+main {
+    flex: 2;
+    padding: 1.5rem;
+    background: rgba(26, 26, 46, 0.6);
+    border-radius: 16px;
+    border: 2px solid rgba(100, 108, 255, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+main > h4:first-child {
+    margin: 0 0 1.5rem 0;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(100, 108, 255, 0.2), rgba(100, 108, 255, 0.1));
+    border: 2px solid rgba(100, 108, 255, 0.3);
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(100, 108, 255, 0.2);
+}
+
+main > div:first-of-type {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+main input[type="text"] {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(100, 108, 255, 0.3);
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+main input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+main input[type="text"]:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #646cff;
+    box-shadow: 0 0 20px rgba(100, 108, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+main > div:last-of-type {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+main > div:last-of-type > div {
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(100, 108, 255, 0.4);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+main > div:last-of-type > div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(100, 108, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+main > div:last-of-type > div:hover::before {
+    left: 100%;
+}
+
+main > div:last-of-type > div:hover {
+    background: rgba(100, 108, 255, 0.15);
+    border-color: #646cff;
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(100, 108, 255, 0.3);
+}
+
+main > div:last-of-type > div h4 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+main > div:last-of-type > div:hover h4 {
+    color: #646cff;
+}
+
+main > div:nth-of-type(2) {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+main .action-btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, rgba(100, 108, 255, 0.2), rgba(100, 108, 255, 0.1));
+    border: 2px solid rgba(100, 108, 255, 0.4);
+    border-radius: 10px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+main .action-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(100, 108, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+main .action-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+main .action-btn:hover {
+    background: linear-gradient(135deg, rgba(100, 108, 255, 0.3), rgba(100, 108, 255, 0.2));
+    border-color: #646cff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(100, 108, 255, 0.4);
+    color: #ffffff;
+}
+
+main .action-btn:active {
+    transform: translateY(0);
+}
+
+main .action-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+main .repo-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+main .repo-btn {
+    padding: 0.5rem 1rem;
+    background: rgba(100, 108, 255, 0.1);
+    border: 1px solid rgba(100, 108, 255, 0.3);
+    border-radius: 8px;
+    color: #646cff;
+    font-weight: 500;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+main .repo-btn:hover {
+    background: rgba(100, 108, 255, 0.2);
+    border-color: #646cff;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 10px rgba(100, 108, 255, 0.3);
+}
+
+main .repo-btn:active {
+    transform: translateY(0);
+}
+
+#right {
+    flex: 1;
+    max-width: 300px;
+    padding: 1.5rem;
+    background: rgba(26, 26, 46, 0.6);
+    border-radius: 16px;
+    border: 2px solid rgba(100, 108, 255, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+#right h3 {
+    margin: 0 0 1.5rem 0;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(100, 108, 255, 0.2), rgba(100, 108, 255, 0.1));
+    border: 2px solid rgba(100, 108, 255, 0.3);
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(100, 108, 255, 0.2);
+}
+
+#right ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#right ul li {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(100, 108, 255, 0.2);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+#right ul li:hover {
+    background: rgba(100, 108, 255, 0.15);
+    border-color: #646cff;
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(100, 108, 255, 0.3);
+}
+
+#right ul li p {
+    margin: 0;
+    color: #ffffff;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+#right ul li:hover p {
+    color: #646cff;
+}
+
+#right .view-all-btn {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, rgba(100, 108, 255, 0.2), rgba(100, 108, 255, 0.1));
+    border: 2px solid rgba(100, 108, 255, 0.4);
+    border-radius: 10px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#right .view-all-btn:hover {
+    background: linear-gradient(135deg, rgba(100, 108, 255, 0.3), rgba(100, 108, 255, 0.2));
+    border-color: #646cff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(100, 108, 255, 0.4);
+}
+
+#right .view-all-btn:active {
+    transform: translateY(0);
+}
+
+#right .event-btn {
+    padding: 0.5rem 1rem;
+    background: rgba(100, 108, 255, 0.15);
+    border: 1px solid rgba(100, 108, 255, 0.4);
+    border-radius: 8px;
+    color: #646cff;
+    font-weight: 500;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+#right .event-btn:hover {
+    background: rgba(100, 108, 255, 0.25);
+    border-color: #646cff;
+    color: #ffffff;
+    transform: scale(1.02);
+    box-shadow: 0 2px 10px rgba(100, 108, 255, 0.3);
+}
+
+#right .event-btn:active {
+    transform: scale(1);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    #dashboard {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    #left,
+    #right {
+        max-width: 100%;
+        position: relative;
+        top: 0;
+    }
 }
