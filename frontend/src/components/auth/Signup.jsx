@@ -16,7 +16,12 @@ import "./auth.css";
 const Signup=()=>{
 
     const {setCurrentUser}=useAuth();
-const navigate=useNavigate();
+    const navigate=useNavigate();
+
+    const handleLogoClick = (e) => {
+        e.preventDefault();
+        navigate("/");
+    };
 
     const[email,setEmail]=useState('');
     const [username,setUserName]=useState('');
@@ -54,7 +59,9 @@ const navigate=useNavigate();
         <div className="login-wrapper">
             <div className="auth-content">
             <div className="login-logo-container">
+                <Link to={"/"} onClick={handleLogoClick}>
                 <img className="logo-login" src={logo} alt="Logo"/>
+                </Link>
             </div>
 
             <div className="login-box-wrapper">
@@ -77,6 +84,7 @@ const navigate=useNavigate();
                         id="Username"
                         className="input"
                         type="text"
+                        required
                         value={username}
                         onChange={(e)=>setUserName(e.target.value)}
                         />
@@ -90,6 +98,7 @@ const navigate=useNavigate();
                             id="Email"
                             className="input"
                             type="email"
+                            required
                             value={email}
                             onChange={(e)=>setEmail(e.target.value)}
                             />
@@ -103,6 +112,7 @@ const navigate=useNavigate();
                             id="Password"
                             className="input"
                             type="password"
+                            required
                             value={password}
                             onChange={(e)=>setPassword(e.target.value)}
                             />

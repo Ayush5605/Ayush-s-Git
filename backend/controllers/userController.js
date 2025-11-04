@@ -105,12 +105,12 @@ export async function login(req,res){
         const isMatch=await bcrypt.compare(password,user.password);
 
         if(!isMatch){
-             return res.json({success:false,message:"Invalid credentials"});
+             return res.status(401).json({success:false,message:"Invalid credentials"});
         }
 
         const token=jwt.sign({id:user._id},process.env.JWT_SECRET_KEY,{expiresIn:"1h"});
         // Align response shape with signup for frontend consistency
-        res.json({ token, userId: user._id });
+        res.status(200).json({ token, userId: user._id });
 
 
     }catch(err){

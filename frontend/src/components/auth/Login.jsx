@@ -16,6 +16,11 @@ const Login=()=>{
     const navigate=useNavigate();
     const{currentUser,setCurrentUser}=useAuth();
 
+    const handleLogoClick = (e) => {
+        e.preventDefault();
+        navigate("/");
+    };
+
     const[email,setEmail]=useState('');
     const[password,setPassword]=useState('');
     const[loading,setLoading]=useState(false);
@@ -28,7 +33,13 @@ const Login=()=>{
     },[]);
 
     const handleLogin=async(e)=>{
+
         e.preventDefault();
+
+
+        if(!email || !password){
+            return res.json("Field is empty");
+        }
 
         try{
             setLoading(true);
@@ -36,6 +47,9 @@ const Login=()=>{
                 email:email,
                 password:password
             })
+
+
+            if(res.data.token){
             localStorage.setItem("token",res.data.token);
             localStorage.setItem("userId", res.data.userId);
 
@@ -43,6 +57,10 @@ const Login=()=>{
             setLoading(false);
 
             window.location.href="/";
+            }else{
+                 alert(res.data.message || "Invalid credentials");
+                setLoading(false);
+            }
         }catch(err){
             console.error(err);
             alert("signup failed");
@@ -60,7 +78,9 @@ const Login=()=>{
          <div className="login-wrapper">
             <div className="auth-content">
                     <div className="login-logo-conatiner">
+                        <Link to={"/"} onClick={handleLogoClick}>
                         <img className="logo-login" src={logo} alt="Logo"/>
+                        </Link>
                     </div>
         
                     <div className="login-box-wrapper">
@@ -86,6 +106,7 @@ const Login=()=>{
                                     className="input"
                                     type="email"
                                     value={email}
+                                    required
                                     onChange={(e)=>setEmail(e.target.value)}
                                     />
                                 </div>
@@ -99,6 +120,7 @@ const Login=()=>{
                                     className="input"
                                     type="password"
                                     value={password}
+                                    required
                                     onChange={(e)=>setPassword(e.target.value)}
                                     />
                                 </div>
