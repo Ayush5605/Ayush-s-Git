@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from "react";
+import "./dashboard.css";
 
 const Dashboard=()=>{
 
@@ -60,7 +61,7 @@ const Dashboard=()=>{
         }
     },[searchQuery,repositiories]);
     return(
-    <section>
+    <section id="dashboard">
         <aside>
             <h4>Suggested Repositiories</h4>
             {suggestedRepositiories.map((repo)=>{
@@ -72,10 +73,16 @@ const Dashboard=()=>{
         </aside>
         <main>
              <h4>Your Repositiories</h4>
+             <div>
+                <input type="text" 
+                value={searchQuery}
+                 placeholder="Search..."
+                 onChange={(e)=>{setSearchQuery(e.target.value)}}></input>
+             </div>
             {searchResult.map((repo)=>{
                 return <div key={repo._id}>
                     <h4>{repo.name}</h4>
-                    <h4>{repo.description}</h4>
+                    <p>{repo.description}</p>
                 </div>
             })}
 
