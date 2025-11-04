@@ -1,5 +1,9 @@
 #dashboard{
+    border-top: 2px solid white;
+    margin-top: 5px;
     display:flex;
-    width:1080px;
+    width:100vw;
     justify-content: space-between;
+    margin-left: 5px;
+   padding-right: 20px;
 }

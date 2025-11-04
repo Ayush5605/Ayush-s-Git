@@ -1,0 +1,33 @@
+nav{
+    display:flex;
+    justify-content: space-between;
+}
+
+nav img{
+    width:30%;
+    margin-top: 10px;
+    height: 5%;
+    
+    border-radius: 100%;
+}
+nav div{
+    display: flex;
+}
+nav p{
+    margin-left: 30px;
+    padding-right: 50px;
+    margin-top:20px;
+    color:white;
+    opacity: 0.7;
+}
+nav h3{
+    margin-left: 10px;
+    color: white;
+    opacity: 0.7;
+}
+
+nav h3:hover,
+nav p:hover{
+    text-decoration: underline;
+    opacity: 1;
+}

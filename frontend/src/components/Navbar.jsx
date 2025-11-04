@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../src/assets/github-mark-white.svg";
+import "./Navbar.css";
 
 
 const Navbar=()=>{
@@ -14,10 +15,10 @@ const Navbar=()=>{
             </Link>
             <div>
                 <Link to={"/repo/create"}>
-                <p>Ceeate a repositiory</p>
+                <p>Create Repository</p>
                 </Link> 
                 <Link to={"/profile"} >
-                <h3>Profile</h3></Link>        
+                <p>Profile</p></Link>        
              </div>
         </nav>
     );
