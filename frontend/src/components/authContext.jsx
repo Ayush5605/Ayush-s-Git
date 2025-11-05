@@ -9,6 +9,7 @@ import React, {createContext,useState,useEffect,useContext} from
     return useContext(AuthContext);
  }
  export const AuthProvider=({children})=>{
+    const [isLoggedIn,setIsLoggedIn]=useState(false);
     const[currentUser,setCurrentUser]=useState(null);
 
     useEffect(()=>{

@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from "react";
 import "./dashboard.css";
 import Navbar from "../Navbar";
+import { useAuth } from "../authContext";
 
 const Dashboard=()=>{
 
@@ -8,6 +9,7 @@ const Dashboard=()=>{
     const [searchQuery,setSearchQuery]=useState('');
     const[suggestedRepositiories,setSuggestedRepositiories]=useState([]);
     const[searchResult,setSearchResult]=useState([]);
+   
 
     useEffect(()=>{
 

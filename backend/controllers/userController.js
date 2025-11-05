@@ -13,8 +13,7 @@ let client;
 async function connectClient(){
     if(!client){
         client=new MongoClient(uri,{
-            useNewUrlParser:true,
-            useUnifiedTopology:true
+           
         });
 
         await client.connect();
@@ -75,7 +74,7 @@ export async function getAllUsers(req,res){
             const result=await userCollection.insertOne(newUser);
 
             const token=jwt.sign({id:result.insertedId},process.env.JWT_SECRET_KEY,{expiresIn:"1h"});
-           return res.json({token,userId:result.insertedId});
+           return res.status(200).json({token,userId:result.insertedId});
 
         
 

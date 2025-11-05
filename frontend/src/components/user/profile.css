@@ -1,0 +1,125 @@
+/* Page background and container */
+.profile-container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0d1117 0%, #161b22 100%);
+  padding: 24px 16px;
+  color: #c9d1d9;
+}
+
+/* Layout wrapper */
+.profile-page-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+/* Card */
+.user-profile-section {
+  width: 100%;
+  max-width: 720px;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* Avatar */
+.profile-image {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6e40c9 0%, #b86bff 100%);
+  border: 2px solid #30363d;
+}
+
+/* Name and meta */
+.name h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.follower {
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
+  color: #8b949e;
+}
+
+.follower p {
+  margin: 0;
+}
+
+/* Buttons */
+.follow-btn {
+  background: #1f6feb;
+  border: 1px solid #388bfd;
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.follow-btn:hover {
+  /* background color may be overridden by inline styles in JSX; add motion/shadow */
+  background: #2567d9;
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(31, 111, 235, 0.35);
+  filter: brightness(1.03);
+}
+
+.follow-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(31, 111, 235, 0.25);
+}
+
+/* Logout button */
+#logout {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  background: #238636;
+  border: 1px solid #2ea043;
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+#logout:hover {
+  /* background color may be overridden by inline styles in JSX; add motion/shadow */
+  background: #2ea043;
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(35, 134, 54, 0.35);
+  filter: brightness(1.04);
+}
+
+#logout:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 12px rgba(35, 134, 54, 0.28);
+}
+
+/* Utilities */
+.profile-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .user-profile-section {
+    padding: 16px;
+  }
+
+  .profile-image {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+

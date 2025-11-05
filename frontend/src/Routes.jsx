@@ -7,6 +7,7 @@ import Signup from "./components/auth/Signup"
 
 import { useAuth } from "./components/authContext";
 import Dashboard from "./components/dashboard/Dashboard";
+import Profile from "./components/user/Profile";
 
 const projectRoutes=()=>{
     const {currentUser,setCurrentUser}=useAuth();
@@ -42,6 +43,10 @@ const projectRoutes=()=>{
         {
             path:"/",
             element:<Dashboard/>
+        },
+        {
+            path:"/profile",
+            element:<Profile/>
         }
        
     ]);

@@ -16,6 +16,7 @@ import "./auth.css";
 const Signup=()=>{
 
     const {setCurrentUser}=useAuth();
+    
     const navigate=useNavigate();
 
     const handleLogoClick = (e) => {
@@ -43,13 +44,15 @@ const Signup=()=>{
             localStorage.setItem("userId", res.data.userId);
 
             setCurrentUser( res.data.userId);
+           
             setLoading(false);
 
-            window.location.href="/";
+            navigate("/");
         }catch(err){
             console.error(err);
             alert("signup failed");
             setLoading(false);
+           
 
         }
     };

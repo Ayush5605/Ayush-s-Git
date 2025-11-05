@@ -15,6 +15,7 @@ const Login=()=>{
 
     const navigate=useNavigate();
     const{currentUser,setCurrentUser}=useAuth();
+    
 
     const handleLogoClick = (e) => {
         e.preventDefault();
@@ -24,6 +25,7 @@ const Login=()=>{
     const[email,setEmail]=useState('');
     const[password,setPassword]=useState('');
     const[loading,setLoading]=useState(false);
+    
 
     useEffect(()=>{
 
@@ -38,7 +40,9 @@ const Login=()=>{
 
 
         if(!email || !password){
-            return res.json("Field is empty");
+            alert("Field is empty");
+            
+            return;
         }
 
         try{
@@ -54,17 +58,23 @@ const Login=()=>{
             localStorage.setItem("userId", res.data.userId);
 
             setCurrentUser(res.data.userId);
+            
+           
             setLoading(false);
 
-            window.location.href="/";
+            navigate("/");
             }else{
                  alert(res.data.message || "Invalid credentials");
                 setLoading(false);
+               
+                
             }
         }catch(err){
             console.error(err);
             alert("signup failed");
             setLoading(false);
+           
+           
 
         
         }
