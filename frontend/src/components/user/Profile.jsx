@@ -5,6 +5,7 @@ import axios from "axios";
 import "./profile.css";
 import { UnderlineNav } from "@primer/react";
 import {BookIcon,RepoIcon} from "@primer/octicons-react";
+import { Navigate } from "react-router-dom";
 
 
 const Profile=()=>{
@@ -22,7 +23,7 @@ const Profile=()=>{
                 try{
                 const response=await axios.get(`http://localhost:3000/getUserProfile/${userId}`);
                 console.log(response.data);
-                setUserDetails(response.data);
+                setUserDetails(response.data.user);
                 }catch(err){
                     console.error("Cannot fetch user details");
                 }
@@ -57,7 +58,7 @@ const Profile=()=>{
                 Overview
             </UnderlineNav.Item>
              <UnderlineNav.Item
-          onClick={() => navigate("/repo")}
+          onClick={() => Navigate("/repo")}
           icon={RepoIcon}
           sx={{
             backgroundColor: "transparent",
