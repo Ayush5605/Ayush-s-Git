@@ -138,7 +138,7 @@ export async function getUserProfile(req,res){
             return res.status(400).json({message:"User not found !"});
         }
 
-        return res.json(user,{message:"Profile fetched !"});
+        return res.status(200).json({success:true,message:"Profile fetched !",user});
 
 
     }catch(err){
