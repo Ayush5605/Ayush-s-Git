@@ -53,7 +53,7 @@ const ProfileHeatMap=()=>{
             <h4>Recent Contributions</h4>
             <HeatMap
             className="HeatMapProfile"
-            style={{maxWidth:'700px',maxHeight:'700px',height:'200px',color:'white'}}
+            style={{maxWidth:'700px',height:'500px',color:'white'}}
             value={activityData}
             weekLabels={['Sun','Mon','Tue','Wed','Thu','Fri','Sat']}
             startDate={new Date("2025-01-01")}

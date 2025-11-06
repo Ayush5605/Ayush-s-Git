@@ -8,6 +8,7 @@ import {BookIcon,RepoIcon} from "@primer/octicons-react";
 import { Navigate } from "react-router-dom";
 import HeatMap from "@uiw/react-heat-map";
 import ProfileHeatMap from "./HeatMap.jsx";
+import { useAuth } from "../authContext.jsx";
 
 
 const Profile=()=>{
@@ -15,6 +16,7 @@ const Profile=()=>{
     const[userDetails,setUserDetails]=useState({
         name:"username"
     });
+    const{setCurrentUser}=useAuth();
 
 
     useEffect(()=>{
@@ -74,6 +76,16 @@ const Profile=()=>{
           Starred Repositories
         </UnderlineNav.Item>
         </UnderlineNav>
+
+        <button className="logout"
+        onClick={()=>{
+          localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        setCurrentUser(null);
+
+        naviget('/login');
+
+        }}>Logout</button>
 
          <div className="profile-page-wrapper">
         <div className="user-profile-section">
