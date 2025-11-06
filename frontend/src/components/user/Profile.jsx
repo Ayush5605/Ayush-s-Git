@@ -6,6 +6,8 @@ import "./profile.css";
 import { UnderlineNav } from "@primer/react";
 import {BookIcon,RepoIcon} from "@primer/octicons-react";
 import { Navigate } from "react-router-dom";
+import HeatMap from "@uiw/react-heat-map";
+import ProfileHeatMap from "./HeatMap.jsx";
 
 
 const Profile=()=>{
@@ -58,7 +60,7 @@ const Profile=()=>{
                 Overview
             </UnderlineNav.Item>
              <UnderlineNav.Item
-          onClick={() => Navigate("/repo")}
+          onClick={() => naviget("/repo")}
           icon={RepoIcon}
           sx={{
             backgroundColor: "transparent",
@@ -84,10 +86,19 @@ const Profile=()=>{
           <button className="follow-btn">Follow</button>
 
           <div className="follower">
-            <p>10 Follower</p>
+            <p>{userDetails.followedUsers?.length || 0} followers</p>
             <p>3 Following</p>
           </div>
         </div>
+        <div className="heat-map-section">
+          <ProfileHeatMap/>
+          
+
+          
+
+
+        </div>
+
         
         </div>
         </>
