@@ -17,6 +17,9 @@ const API_URL=import.meta.env.VITE_API_URL;
 
 const Login=()=>{
 
+    console.log("API URL is: ", API_URL);
+
+
     const navigate=useNavigate();
     const{currentUser,setCurrentUser}=useAuth();
     

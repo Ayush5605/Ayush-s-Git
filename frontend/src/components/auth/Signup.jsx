@@ -17,6 +17,9 @@ const API_URL=import.meta.env.VITE_API_URL;
 
 const Signup=()=>{
 
+     console.log("VITE VARS:", import.meta.env);
+console.log("API_URL:", API_URL);
+
     const {setCurrentUser}=useAuth();
     
     const navigate=useNavigate();
@@ -61,6 +64,9 @@ const Signup=()=>{
 
 
     return(
+
+       
+
         <div className="login-wrapper">
             <div className="auth-content">
             <div className="login-logo-container">
