@@ -2,6 +2,8 @@ import React,{useState,useEffect} from "react";
 import "./dashboard.css";
 import Navbar from "../Navbar";
 import { useAuth } from "../authContext";
+const API_URL=process.env.REACT_APP_API_URL;
+
 
 const Dashboard=()=>{
 
@@ -32,7 +34,7 @@ const Dashboard=()=>{
          const fetchSuggestedRepositiories=async()=>{
 
             try{
-                    const response=await fetch(`http://localhost:3000/repo/all`);
+                    const response=await fetch(`${API_URL}/repo/all`);
 
                     const data=await response.json();
                     setSuggestedRepositiories(data);

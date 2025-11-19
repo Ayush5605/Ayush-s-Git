@@ -9,6 +9,8 @@ import { Navigate } from "react-router-dom";
 import HeatMap from "@uiw/react-heat-map";
 import ProfileHeatMap from "./HeatMap.jsx";
 import { useAuth } from "../authContext.jsx";
+const API_URL=process.env.REACT_APP_API_URL;
+
 
 
 const Profile=()=>{
@@ -25,7 +27,7 @@ const Profile=()=>{
 
             if(userId){
                 try{
-                const response=await axios.get(`http://localhost:3000/getUserProfile/${userId}`);
+                const response=await axios.get(`${API_URL}/getUserProfile/${userId}`);
                 console.log(response.data);
                 setUserDetails(response.data.user);
                 }catch(err){

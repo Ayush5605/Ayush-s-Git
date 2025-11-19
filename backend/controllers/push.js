@@ -9,7 +9,7 @@ export async function push(){
 
 
     try{
-        const commitDirs=await fs.readFile(commitPath);
+        const commitDirs=await fs.readdir(commitsPath);
 
         for(const commitDir of commitDirs){
 
