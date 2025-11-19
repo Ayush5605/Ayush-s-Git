@@ -9,7 +9,7 @@ import { Navigate } from "react-router-dom";
 import HeatMap from "@uiw/react-heat-map";
 import ProfileHeatMap from "./HeatMap.jsx";
 import { useAuth } from "../authContext.jsx";
-const API_URL=process.env.REACT_APP_API_URL;
+const API_URL=import.meta.env.VITE_API_URL;
 
 
 
